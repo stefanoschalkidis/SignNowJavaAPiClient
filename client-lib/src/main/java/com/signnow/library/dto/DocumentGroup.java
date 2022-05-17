@@ -54,4 +54,10 @@ public class DocumentGroup extends GenericId {
         @JsonProperty("document_group_total_count")
         public Integer totalCount;
     }
+
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @SuppressWarnings("java:S1104")  // field name equal to JsonProperty
+    public static class DocumentGroupDeleteResponse {
+        public String status;
+    }
 }

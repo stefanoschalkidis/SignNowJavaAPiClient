@@ -63,12 +63,12 @@ public class DocumentGroupsService extends ApiService implements DocumentGroups 
     }
 
     @Override
-    public void deleteDocumentGroup(String documentGroupId) throws SNException {
-        client.delete(
+    public String deleteDocumentGroup(String documentGroupId) throws SNException {
+        return client.delete(
                 "/documentgroup/{documentGroupId}",
                 Collections.singletonMap(Constants.DOCUMENT_GROUP_ID, documentGroupId),
-                String.class
-        );
+                DocumentGroup.DocumentGroupDeleteResponse.class
+        ).status;
     }
 
     @Override

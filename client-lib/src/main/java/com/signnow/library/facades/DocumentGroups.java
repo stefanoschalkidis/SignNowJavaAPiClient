@@ -16,7 +16,7 @@ public interface DocumentGroups {
 
     DocumentGroup.DocumentGroupsListResponse getUserDocumentGroups(Integer limit, Integer offset) throws SNException;
 
-    void deleteDocumentGroup(String documentGroupId) throws SNException;
+    String deleteDocumentGroup(String documentGroupId) throws SNException;
 
     String createDocumentGroupInvite(String documentGroupId, GroupInvite groupInvite) throws SNException;
 
