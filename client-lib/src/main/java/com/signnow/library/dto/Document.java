@@ -199,4 +199,10 @@ public class Document extends GenericId {
     public static class MoveDocumentResponse {
         public String result;
     }
+
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @SuppressWarnings("java:S1104")  // field name equal to JsonProperty
+    public static class DocumentDeleteResponse {
+        public String status;
+    }
 }

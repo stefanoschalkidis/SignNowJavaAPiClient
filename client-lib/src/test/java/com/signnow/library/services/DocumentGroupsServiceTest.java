@@ -5,8 +5,6 @@ import com.signnow.library.dto.GenericId;
 import com.signnow.library.dto.GroupInvite;
 import com.signnow.library.exceptions.SNApiException;
 import com.signnow.library.exceptions.SNException;
-import com.signnow.library.services.CommonServiceTestCase;
-import com.signnow.library.services.DocumentGroupsService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -93,10 +91,18 @@ class DocumentGroupsServiceTest extends CommonServiceTestCase {
     @Test
     void deleteDocumentGroup() throws SNException {
         final String path = "/documentgroup/{documentGroupId}";
-        when(clientMock.delete(eq(path), anyMap(), eq(String.class))).thenReturn("1");
-        service.deleteDocumentGroup("1");
+        DocumentGroup.DocumentGroupDeleteResponse responseMock = mock(DocumentGroup.DocumentGroupDeleteResponse.class);
+
+        when(clientMock.delete(eq(path)
+                , anyMap()
+                , eq(DocumentGroup.DocumentGroupDeleteResponse.class)))
+                .thenReturn(responseMock);
+
+        String status = service.deleteDocumentGroup("1");
+
+        assertEquals(responseMock.status, status);  // not sure if useful as is null
         verify(clientMock, times(1))
-                .delete(eq(path), anyMap(), eq(String.class));
+                .delete(eq(path), anyMap(), eq(DocumentGroup.DocumentGroupDeleteResponse.class));
     }
 
     @Test
