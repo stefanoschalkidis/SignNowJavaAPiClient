@@ -24,7 +24,7 @@ public interface Documents {
 
     void sendDocumentSignInvite(String documentId, Document.SigningInviteWithRolesRequest request) throws SNException;
 
-    void updateDocumentFields(String documentId, List<Document.Field> request) throws SNException;
+    String updateDocumentFields(String documentId, List<Document.Field> request) throws SNException;
 
     Document getDocument(String documentId) throws SNException;
 

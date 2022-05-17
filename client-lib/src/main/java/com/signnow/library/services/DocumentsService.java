@@ -3,6 +3,7 @@ package com.signnow.library.services;
 import com.signnow.library.Constants;
 import com.signnow.library.SNClient;
 import com.signnow.library.dto.Document;
+import com.signnow.library.dto.GenericId;
 import com.signnow.library.exceptions.SNException;
 import com.signnow.library.facades.Documents;
 import org.glassfish.jersey.media.multipart.FormDataMultiPart;
@@ -83,13 +84,13 @@ public class DocumentsService extends ApiService implements Documents {
     }
 
     @Override
-    public void updateDocumentFields(String documentId, List<Document.Field> request) throws SNException {
-        client.put(
+    public String updateDocumentFields(String documentId, List<Document.Field> request) throws SNException {
+        return client.put(
                 Constants.PATH_TO_DOCUMENT_ID,
                 Collections.singletonMap(Constants.DOCUMENT_ID, documentId),
                 new Document.FieldsUpdateRequest(request),
-                String.class
-        );
+                GenericId.class
+        ).id;
     }
 
     @Override

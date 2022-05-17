@@ -1,6 +1,7 @@
 package com.signnow.library.services;
 
 import com.signnow.library.dto.Document;
+import com.signnow.library.dto.GenericId;
 import com.signnow.library.dto.User;
 import com.signnow.library.exceptions.SNException;
 import org.glassfish.jersey.client.JerseyInvocation;
@@ -137,12 +138,14 @@ class DocumentsServiceTest extends CommonServiceTestCase {
 
     @Test
     void updateDocumentFields() throws SNException {
+        final GenericId responseMock = mock(GenericId.class);
         List<Document.Field> lst = new ArrayList<>();
 
-        when(clientMock.put(anyString(), anyMap(), any(), any())).thenReturn(null);
+        when(clientMock.put(anyString(), anyMap(), any(), any())).thenReturn(responseMock);
 
-        service.updateDocumentFields("1", lst);
+        String id = service.updateDocumentFields("1", lst);
 
+        assertEquals(responseMock.id, id);  // not sure if useful as is null
         verify(clientMock, times(1)).put(anyString(), anyMap(), any(), any());
     }
 
