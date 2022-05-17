@@ -28,7 +28,7 @@ public interface Documents {
 
     Document getDocument(String documentId) throws SNException;
 
-    void deleteDocument(String documentId) throws SNException;
+    String deleteDocument(String documentId) throws SNException;
 
     String getDownloadLink(String documentId) throws SNException;
 }

@@ -103,12 +103,12 @@ public class DocumentsService extends ApiService implements Documents {
     }
 
     @Override
-    public void deleteDocument(String documentId) throws SNException {
-        client.delete(
+    public String deleteDocument(String documentId) throws SNException {
+        return client.delete(
                 Constants.PATH_TO_DOCUMENT_ID,
                 Collections.singletonMap(Constants.DOCUMENT_ID, documentId),
-                String.class
-        );
+                Document.DocumentDeleteResponse.class
+        ).status;
     }
 
     @Override

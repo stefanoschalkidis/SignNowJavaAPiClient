@@ -1,6 +1,7 @@
 package com.signnow.library.services;
 
 import com.signnow.library.dto.Document;
+import com.signnow.library.dto.DocumentGroup;
 import com.signnow.library.dto.GenericId;
 import com.signnow.library.dto.User;
 import com.signnow.library.exceptions.SNException;
@@ -160,11 +161,18 @@ class DocumentsServiceTest extends CommonServiceTestCase {
 
     @Test
     void deleteDocument() throws SNException {
-        when(clientMock.delete(anyString(), anyMap(), any())).thenReturn(null);
+        Document.DocumentDeleteResponse responseMock = mock(Document.DocumentDeleteResponse.class);
+        when(clientMock.delete(anyString()
+                , anyMap()
+                , eq(Document.DocumentDeleteResponse.class)))
+                .thenReturn(responseMock);
 
-        service.deleteDocument("1");
+        String status = service.deleteDocument("1");
 
-        verify(clientMock, times(1)).delete(anyString(), anyMap(), any());
+        assertEquals(responseMock.status, status);  // not sure if useful as is null
+        verify(clientMock, times(1)).delete(anyString()
+                , anyMap()
+                , eq(Document.DocumentDeleteResponse.class));
     }
 
     @Test
