@@ -43,20 +43,30 @@ public class DocumentsService extends ApiService implements Documents {
     }
 
     @Override
-    public List<Document> getDocuments() throws SNException {
-        return client.get("/user/documentsv2", null, new GenericType<List<Document>>() {});
+    public String moveDocument(String documentId, String folderId) throws SNException {
+        return client.post(
+                "/document/{documentId}/move",
+                Collections.singletonMap(Constants.DOCUMENT_ID, documentId),
+                new Document.MoveDocumentRequest(folderId),
+                Document.MoveDocumentResponse.class
+        ).result;
     }
 
     @Override
-    public Document.SigningLinkResponce createSigningLink(String documentId) throws SNException {
-        return client.post("/link", null, new Document.SigningLinkRequest(documentId), Document.SigningLinkResponce.class);
+    public List<Document> getDocuments() throws SNException {
+        return client.get("/user/documentsv2", null, new GenericType<>() {});
+    }
+
+    @Override
+    public Document.SigningLinkResponse createSigningLink(String documentId) throws SNException {
+        return client.post("/link", null, new Document.SigningLinkRequest(documentId), Document.SigningLinkResponse.class);
     }
 
     @Override
     public void sendDocumentSignInvite(String documentId, Document.SigningInviteRequest request) throws SNException {
         client.post(
                 "/document/{documentId}/invite",
-                Collections.singletonMap("documentId", documentId),
+                Collections.singletonMap(Constants.DOCUMENT_ID, documentId),
                 request,
                 String.class
         );
@@ -66,7 +76,7 @@ public class DocumentsService extends ApiService implements Documents {
     public void sendDocumentSignInvite(String documentId, Document.SigningInviteWithRolesRequest request) throws SNException {
         client.post(
                 "/document/{documentId}/invite",
-                Collections.singletonMap("documentId", documentId),
+                Collections.singletonMap(Constants.DOCUMENT_ID, documentId),
                 request,
                 String.class
         );
@@ -75,8 +85,8 @@ public class DocumentsService extends ApiService implements Documents {
     @Override
     public void updateDocumentFields(String documentId, List<Document.Field> request) throws SNException {
         client.put(
-                "/document/{documentId}",
-                Collections.singletonMap("documentId", documentId),
+                Constants.PATH_TO_DOCUMENT_ID,
+                Collections.singletonMap(Constants.DOCUMENT_ID, documentId),
                 new Document.FieldsUpdateRequest(request),
                 String.class
         );
@@ -85,8 +95,8 @@ public class DocumentsService extends ApiService implements Documents {
     @Override
     public Document getDocument(String documentId) throws SNException {
         return client.get(
-                "/document/{documentId}",
-                Collections.singletonMap("documentId", documentId),
+                Constants.PATH_TO_DOCUMENT_ID,
+                Collections.singletonMap(Constants.DOCUMENT_ID, documentId),
                 Document.class
         );
     }
@@ -94,8 +104,8 @@ public class DocumentsService extends ApiService implements Documents {
     @Override
     public void deleteDocument(String documentId) throws SNException {
         client.delete(
-                "/document/{documentId}",
-                Collections.singletonMap("documentId", documentId),
+                Constants.PATH_TO_DOCUMENT_ID,
+                Collections.singletonMap(Constants.DOCUMENT_ID, documentId),
                 String.class
         );
     }
@@ -104,7 +114,7 @@ public class DocumentsService extends ApiService implements Documents {
     public String getDownloadLink(String documentId) throws SNException {
         return client.post(
                 "/document/{documentId}/download/link",
-                Collections.singletonMap("documentId", documentId),
+                Collections.singletonMap(Constants.DOCUMENT_ID, documentId),
                 null,
                 Document.DocumentDownloadLink.class
         ).link;

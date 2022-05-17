@@ -12,7 +12,7 @@ public class GroupInvite {
     @JsonProperty("invite_steps")
     public List<InviteStep> inviteSteps = new ArrayList<>();
     @JsonProperty("completion_emails")
-    public List<Email> completionEmails = new ArrayList<>();
+    public List<InviteEmail> completionEmails = new ArrayList<>();
 
     public enum ActionType {
         SIGN("sign"),
@@ -39,12 +39,25 @@ public class GroupInvite {
         }
     }
 
+    @SuppressWarnings("java:S1104")  // field name equal to JsonProperty
+    public static class InviteStep {
+        public Integer order;
+        @JsonProperty("invite_emails")
+        public List<InviteEmail> inviteEmails = new ArrayList<>();
+        @JsonProperty("invite_actions")
+        public List<InviteAction> inviteActions = new ArrayList<>();
+    }
+
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public static class Email {
+    @SuppressWarnings("java:S1104")  // field name equal to JsonProperty
+    public static class InviteEmail {
         public String email;
+        public Boolean disabled;
         public String subject;
         public String message;
-        public Boolean disabled;
+        @JsonProperty("expiration_days")
+        public Integer expirationDays = null;
+        public Integer reminder = null;
 
         @JsonGetter("disabled")
         public int isDisabled() {
@@ -60,14 +73,7 @@ public class GroupInvite {
         }
     }
 
-    public static class InviteStep {
-        public Integer order;
-        @JsonProperty("invite_emails")
-        public List<Email> inviteEmails = new ArrayList<>();
-        @JsonProperty("invite_actions")
-        public List<InviteAction> inviteActions = new ArrayList<>();
-    }
-
+    @SuppressWarnings("java:S1104")  // field name equal to JsonProperty
     public static class InviteAction {
         public String email;
         @JsonProperty("role_name")
@@ -91,6 +97,7 @@ public class GroupInvite {
         }
     }
 
+    @SuppressWarnings("java:S1104")  // field name equal to JsonProperty
     public static class InviteAuthentication {
         public String type;
         public String value;

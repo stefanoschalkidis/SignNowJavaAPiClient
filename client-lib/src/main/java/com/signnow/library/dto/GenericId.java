@@ -9,11 +9,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
+@SuppressWarnings("java:S1104")  // field name equal to JsonProperty
 public class GenericId {
     public String id;
 
     @JsonIgnore
-    private Map<String, String> additionalMembers = new HashMap<>();
+    private final Map<String, String> additionalMembers = new HashMap<>();
 
     @JsonAnySetter
     public void ignored(String name, Object value) {

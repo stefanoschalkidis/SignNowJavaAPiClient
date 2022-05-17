@@ -45,37 +45,48 @@ public class User {
     }
 
     @JsonInclude(JsonInclude.Include.NON_ABSENT)
+    @SuppressWarnings("java:S1104")  // field name equal to JsonProperty
     public static class UserAuthRequest {
-        @JsonProperty("grant_type")
-        public final String grantType = "password";
         public final String username;
         public final String password;
+        @JsonProperty("grant_type")
+        public final String grantType;
         public final String scope;
 
         public UserAuthRequest(String username, String password) {
-            this(username, password, "*");
+            this(username, password, "password", "*");
         }
 
         public UserAuthRequest(String username, String password, String scope) {
+            this(username, password, "password", scope);
+        }
+
+        public UserAuthRequest(String username, String password, String grantType, String scope) {
             this.username = username;
             this.password = password;
+            this.grantType = grantType;
             this.scope = scope;
         }
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public static class UserAuthResponce {
+    @SuppressWarnings("java:S1104")  // field name equal to JsonProperty
+    public static class UserAuthResponse {
+        @JsonProperty("expires_in")
+        public Integer expiresIn;
+        @JsonProperty("token_type")
+        public String tokenType;
         @JsonProperty("access_token")
-        public String token;
+        public String accessToken;
         @JsonProperty("refresh_token")
         public String refreshToken;
-        @JsonProperty("expires_in")
-        public String expiresIn;
         public String scope;
-        public String id;
+        @JsonProperty("last_login")
+        public Integer lastLogin;
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
+    @SuppressWarnings("java:S1104")  // field name equal to JsonProperty
     public static class UserCreateRequest {
         public String email;
         public String password;
@@ -83,26 +94,34 @@ public class User {
         public String firstName;
         @JsonProperty("last_name")
         public String lastName;
+        public String number;
 
         public UserCreateRequest(String email, String password) {
             this(email, password, null, null);
         }
 
         public UserCreateRequest(String email, String password, String firstName, String lastName) {
+            this(email, password, firstName, lastName, null);
+        }
+
+        public UserCreateRequest(String email, String password, String firstName, String lastName, String number) {
             this.email = email;
             this.password = password;
             this.firstName = firstName;
             this.lastName = lastName;
+            this.number = number;
         }
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public static class UserCreateResponce {
+    @SuppressWarnings("java:S1104")  // field name equal to JsonProperty
+    public static class UserCreateResponse {
         public String id;
-        public boolean verified;
+        public Integer verified;
         public String email;
     }
 
+    @SuppressWarnings("java:S1104")  // field name equal to JsonProperty
     public static class UserInfo {
         public String id;
         @JsonProperty("first_name")

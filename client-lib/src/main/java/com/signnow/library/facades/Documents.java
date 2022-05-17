@@ -14,9 +14,11 @@ public interface Documents {
 
     String uploadDocumentWithTags(InputStream stream, String fileName) throws SNException;
 
+    String moveDocument(String documentId, String folderId) throws SNException;
+
     List<Document> getDocuments() throws SNException;
 
-    Document.SigningLinkResponce createSigningLink(String documentId) throws SNException;
+    Document.SigningLinkResponse createSigningLink(String documentId) throws SNException;
 
     void sendDocumentSignInvite(String documentId, Document.SigningInviteRequest request) throws SNException;
 

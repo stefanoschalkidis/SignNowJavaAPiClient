@@ -32,11 +32,11 @@ public class SNClient implements ServiceProvider {
             + " (" + CLIENT_INFO + ") "
             + System.getProperty("java.vendor") + "/" + System.getProperty("java.version");
 
-    private User user;
-    private WebTarget apiWebTarget;
-    private Documents documentsService = new DocumentsService(this);
-    private Templates templatesService = new TemplatesService(this);
-    private DocumentGroups documentGroupsService = new DocumentGroupsService(this);
+    private final User user;
+    private final WebTarget apiWebTarget;
+    private final Documents documentsService = new DocumentsService(this);
+    private final Templates templatesService = new TemplatesService(this);
+    private final DocumentGroups documentGroupsService = new DocumentGroupsService(this);
 
     protected SNClient(WebTarget apiWebTarget, User user) {
         this.apiWebTarget = apiWebTarget;
@@ -47,7 +47,7 @@ public class SNClient implements ServiceProvider {
         if (response.getStatus() == 401 || response.getStatus() == 403) {
             throw new SNApiException(response.getStatus() + ": " + response.readEntity(AuthError.class).error);
         } else if (response.getStatus() >= 400) {
-            throw new SNApiException(response.readEntity(Errors.class).errors);
+            throw new SNApiException(response.readEntity(Errors.class).errorList);
         }
     }
 
@@ -104,7 +104,7 @@ public class SNClient implements ServiceProvider {
         return response.readEntity(returnType);
     }
 
-    public <E, T> T delete(String path, Map<String, String> parameters, Class<T> returnType) throws SNException {
+    public <T> T delete(String path, Map<String, String> parameters, Class<T> returnType) throws SNException {
         Response response = buildRequest(path, parameters).delete();
         checkAPIException(response);
         return response.readEntity(returnType);
@@ -113,12 +113,12 @@ public class SNClient implements ServiceProvider {
     private Invocation.Builder buildRequest(String path, Map<String, String> parameters) {
         WebTarget target = apiWebTarget.path(path);
         if (parameters != null) {
-            for (String key : parameters.keySet()){
-                WebTarget targetUpd = target.resolveTemplate(key, parameters.get(key));
+            for (Map.Entry<String, String> entry : parameters.entrySet()){
+                WebTarget targetUpd = target.resolveTemplate(entry.getKey(), entry.getValue());
                 if (!targetUpd.toString().equals(target.toString())) {
                     target = targetUpd;
                 } else {
-                    target = target.queryParam(key, parameters.get(key));
+                    target = target.queryParam(entry.getKey(), entry.getValue());
                 }
             }
         }
@@ -127,8 +127,8 @@ public class SNClient implements ServiceProvider {
                 .header("User-Agent", USER_AGENT);
     }
 
-    public User.UserAuthResponce checkAuth() throws SNException {
-        return get("oauth2/token", null, User.UserAuthResponce.class);
+    public User.UserAuthResponse checkAuth() throws SNException {
+        return get("oauth2/token", null, User.UserAuthResponse.class);
     }
 
     public void refreshToken() throws SNException {

@@ -6,11 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
+@SuppressWarnings("java:S1104")  // field name equal to JsonProperty
 public class Document extends GenericId {
     @JsonProperty("user_id")
-    public String user_id;
+    public String userId;
     @JsonProperty("document_name")
-    public String document_name;
+    public String documentName;
     @JsonProperty("page_count")
     public String pageCount;
     public String created;
@@ -39,12 +40,14 @@ public class Document extends GenericId {
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public static class SigningLinkResponce {
+    @SuppressWarnings("java:S1104")  // field name equal to JsonProperty
+    public static class SigningLinkResponse {
         public String url;
         @JsonProperty("url_no_signup")
         public String urlNoSignup;
     }
 
+    @SuppressWarnings("java:S1104")  // field name equal to JsonProperty
     public static class SigningInviteRequest {
         public final String from;
         public final String to;
@@ -58,6 +61,7 @@ public class Document extends GenericId {
         }
     }
 
+    @SuppressWarnings("java:S1104")  // field name equal to JsonProperty
     public static class SigningInviteWithRolesRequest {
         public final String from;
         public final List<InviteRole> to;
@@ -72,10 +76,12 @@ public class Document extends GenericId {
     }
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
+    @SuppressWarnings("java:S1104")  // field name equal to JsonProperty
     public static class InviteRole {
         public final String email;
-        public final String role_id = "";
         public final String role;
+        @JsonProperty("role_id")
+        public String roleId = "";
         public Integer order = 1;
         public String password;
         @JsonProperty("expiration_days")
@@ -136,6 +142,7 @@ public class Document extends GenericId {
     }
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
+    @SuppressWarnings("java:S1104")  // field name equal to JsonProperty
     public static class Field {
         public int x;
         public int y;
@@ -156,6 +163,7 @@ public class Document extends GenericId {
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
+    @SuppressWarnings("java:S1104")  // field name equal to JsonProperty
     public static class FieldInvite extends GenericId {
         public String status;
         public String email;
@@ -171,8 +179,24 @@ public class Document extends GenericId {
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
+    @SuppressWarnings("java:S1104")  // field name equal to JsonProperty
     public static class DocumentDownloadLink {
         public String link;
     }
 
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    public static class MoveDocumentRequest {
+        @JsonProperty("folder_id")
+        public String folderId;
+
+        public MoveDocumentRequest(String folderId) {
+            this.folderId = folderId;
+        }
+    }
+
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @SuppressWarnings("java:S1104")  // field name equal to JsonProperty
+    public static class MoveDocumentResponse {
+        public String result;
+    }
 }
