@@ -6,7 +6,7 @@
 
     <groupId>com.signnow</groupId>
     <artifactId>api-client-lib</artifactId>
-    <version>1.0.2-SNAPSHOT</version>
+    <version>1.0.2</version>
     <packaging>jar</packaging>
 
     <url>https://github.com/stefanoschalkidis/SignNowJavaAPiClient</url>
@@ -20,7 +20,7 @@
 
     <properties>
         <!-- General -->
-        <project.build.outputTimestamp>2022-05-17T00:00:00Z</project.build.outputTimestamp>
+        <project.build.outputTimestamp>2022-05-18T00:00:00Z</project.build.outputTimestamp>
         <maven.version>3.8.1</maven.version>
         <java.version>11</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
