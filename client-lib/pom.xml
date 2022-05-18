@@ -9,6 +9,15 @@
     <version>1.0.2-SNAPSHOT</version>
     <packaging>jar</packaging>
 
+    <url>https://github.com/stefanoschalkidis/SignNowJavaAPiClient</url>
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>https://github.com/stefanoschalkidis/SignNowJavaAPiClient/blob/main/LICENSE</url>
+            <distribution>manual</distribution>
+        </license>
+    </licenses>
+
     <properties>
         <!-- General -->
         <project.build.outputTimestamp>2022-05-17T00:00:00Z</project.build.outputTimestamp>
