@@ -32,12 +32,24 @@ Make sure you have Maven installed. Checkout this repo, cd into repo root direct
 ```
 mvn clean install -pl client-lib
 ```
-This will add client lib into your local Maven repo. Next, add a dependency to your app pom file:
+This will add the client lib into your local Maven repo.
+Alternatively you can download a release artifact and its corresponding *POM* and run the following
+in the download directory:
+```
+mvn install:install-file \
+    -Dfile=api-client-lib-1.0.1.jar \
+    -DgroupId=com.signnow \
+    -DartifactId=api-client-lib \
+    -Dversion=1.0.1 \
+    -Dpackaging=jar \
+    -DpomFile=pom.xml
+```
+Next, add a dependency to your app pom file:
 ```xml
 <dependency>
     <groupId>com.signnow</groupId>
     <artifactId>api-client-lib</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.1</version>
 </dependency>   
 ```
 
