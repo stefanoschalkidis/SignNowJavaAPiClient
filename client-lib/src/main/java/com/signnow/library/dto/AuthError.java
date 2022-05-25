@@ -16,6 +16,7 @@ public class AuthError {
         INVALID_CLIENT("invalid_client"),
         INVALID_REQUEST("invalid_request"),
         INVALID_TOKEN("invalid_token"),
+        INVALID_CREDENTIALS("Invalid credentials."),
         ACCESS_DENIED("access_denied"),
         UNKNOWN("unknown");
 
