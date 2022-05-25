@@ -1,14 +1,14 @@
 package com.signnow.library.exceptions;
 
-import com.signnow.library.dto.Errors;
+import com.signnow.library.dto.ApiError;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class SNApiException extends SNException {
-    final transient List<Errors.ErrorInfo> errorInfo;
+    final transient List<ApiError.ErrorInfo> errorInfo;
 
-    public SNApiException(List<Errors.ErrorInfo> errors) {
+    public SNApiException(List<ApiError.ErrorInfo> errors) {
         this.errorInfo = errors;
     }
 

@@ -1,8 +1,7 @@
 package com.signnow.library;
 
-import com.signnow.library.SNClient;
 import com.signnow.library.dto.AuthError;
-import com.signnow.library.dto.Errors;
+import com.signnow.library.dto.ApiError;
 import com.signnow.library.exceptions.SNException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -47,9 +46,9 @@ class SNClientTest {
 
     @Test
     void checkAPIException_ResponseGetStatus400() {
-        Errors errors = mock(Errors.class);
+        ApiError apiError = mock(ApiError.class);
         when(response.getStatus()).thenReturn(400);
-        when(response.readEntity(Errors.class)).thenReturn(errors);
+        when(response.readEntity(ApiError.class)).thenReturn(apiError);
 
         assertThrows(SNException.class, () -> SNClient.checkAPIException(response));
     }
