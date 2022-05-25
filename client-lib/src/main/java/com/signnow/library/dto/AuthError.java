@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 @SuppressWarnings("java:S1104")  // field name equal to JsonProperty
 public class AuthError {
     public Type error;
+    public Integer code;
 
     @JsonSetter("error")
     public void setType(String type) {
