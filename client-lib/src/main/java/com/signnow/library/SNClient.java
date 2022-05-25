@@ -47,7 +47,7 @@ public class SNClient implements ServiceProvider {
         if (response.getStatus() == 401 || response.getStatus() == 403) {
             throw new SNApiException(response.getStatus() + ": " + response.readEntity(AuthError.class).error);
         } else if (response.getStatus() >= 400) {
-            throw new SNApiException(response.readEntity(ApiError.class).errorList);
+            throw new SNApiException(response.readEntity(ApiError.class).errors);
         }
     }
 
