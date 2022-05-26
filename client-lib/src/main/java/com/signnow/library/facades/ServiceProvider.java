@@ -1,9 +1,9 @@
 package com.signnow.library.facades;
 
 public interface ServiceProvider {
-    Documents documentsService();
+  Documents documentsService();
 
-    Templates templatesService();
+  Templates templatesService();
 
-    DocumentGroups documentGroupsService();
+  DocumentGroups documentGroupsService();
 }
