@@ -14,6 +14,9 @@ public class GroupInvite {
   @JsonProperty("completion_emails")
   public List<InviteEmail> completionEmails = new ArrayList<>();
 
+  @JsonProperty("sign_as_merged")
+  public boolean signAsMerged = true;
+
   public enum ActionType {
     SIGN("sign"),
     VIEW("view");
