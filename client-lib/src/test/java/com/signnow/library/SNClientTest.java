@@ -7,7 +7,7 @@ import static org.mockito.Mockito.when;
 import com.signnow.library.dto.ApiError;
 import com.signnow.library.dto.AuthError;
 import com.signnow.library.exceptions.SNException;
-import javax.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

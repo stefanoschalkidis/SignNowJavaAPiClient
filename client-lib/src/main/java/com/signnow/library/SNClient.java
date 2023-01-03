@@ -12,13 +12,13 @@ import com.signnow.library.facades.Templates;
 import com.signnow.library.services.DocumentGroupsService;
 import com.signnow.library.services.DocumentsService;
 import com.signnow.library.services.TemplatesService;
+import jakarta.ws.rs.client.Entity;
+import jakarta.ws.rs.client.Invocation;
+import jakarta.ws.rs.client.WebTarget;
+import jakarta.ws.rs.core.GenericType;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 import java.util.Map;
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.client.Invocation;
-import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.GenericType;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 
 public class SNClient implements ServiceProvider {
 
