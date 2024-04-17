@@ -16,6 +16,8 @@ public interface DocumentGroups {
 
   String deleteDocumentGroup(String documentGroupId) throws SNException;
 
+  void moveDocumentGroup(String documentGroupId, String folderId) throws SNException;
+
   String createDocumentGroupInvite(String documentGroupId, GroupInvite groupInvite)
       throws SNException;
 

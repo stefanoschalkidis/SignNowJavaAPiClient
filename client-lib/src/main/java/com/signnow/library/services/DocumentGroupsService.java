@@ -73,6 +73,15 @@ public class DocumentGroupsService extends ApiService implements DocumentGroups 
   }
 
   @Override
+  public void moveDocumentGroup(String documentGroupId, String folderId) throws SNException {
+    client.post(
+        "/v2/document-groups/{documentGroupId}/move",
+        Collections.singletonMap(Constants.DOCUMENT_GROUP_ID, documentGroupId),
+        new DocumentGroup.MoveDocumentGroupRequest(folderId),
+        DocumentGroup.MoveDocumentGroupResponse.class);
+  }
+
+  @Override
   public String createDocumentGroupInvite(String documentGroupId, GroupInvite groupInvite)
       throws SNException {
     return client.post(

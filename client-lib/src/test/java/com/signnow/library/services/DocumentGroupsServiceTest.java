@@ -114,6 +114,29 @@ class DocumentGroupsServiceTest extends CommonServiceTestCase {
   }
 
   @Test
+  void moveDocumentGroup() throws SNException {
+    final String path = "/v2/document-groups/{documentGroupId}/move";
+    final DocumentGroup.MoveDocumentGroupResponse responseMock =
+        mock(DocumentGroup.MoveDocumentGroupResponse.class);
+
+    when(clientMock.post(
+            eq(path),
+            anyMap(),
+            any(DocumentGroup.MoveDocumentGroupRequest.class),
+            eq(DocumentGroup.MoveDocumentGroupResponse.class)))
+        .thenReturn(responseMock);
+
+    service.moveDocumentGroup("1", "2");
+
+    verify(clientMock, times(1))
+        .post(
+            eq(path),
+            anyMap(),
+            any(DocumentGroup.MoveDocumentGroupRequest.class),
+            eq(DocumentGroup.MoveDocumentGroupResponse.class));
+  }
+
+  @Test
   void createDocumentGroupInvite() throws SNException {
     GroupInvite groupInviteMock = mock(GroupInvite.class);
     final String path = "/documentgroup/{documentGroupId}/groupinvite";

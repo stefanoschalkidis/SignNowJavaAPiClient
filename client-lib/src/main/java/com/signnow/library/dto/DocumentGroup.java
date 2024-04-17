@@ -64,4 +64,17 @@ public class DocumentGroup extends GenericId {
   public static class DocumentGroupDeleteResponse {
     public String status;
   }
+
+  @JsonIgnoreProperties(ignoreUnknown = true)
+  public static class MoveDocumentGroupRequest {
+    @JsonProperty("folder_id")
+    public String folderId;
+
+    public MoveDocumentGroupRequest(String folderId) {
+      this.folderId = folderId;
+    }
+  }
+
+  @JsonIgnoreProperties(ignoreUnknown = true)
+  public static class MoveDocumentGroupResponse {}
 }
