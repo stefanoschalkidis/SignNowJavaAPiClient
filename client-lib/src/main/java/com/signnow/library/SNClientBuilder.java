@@ -62,7 +62,8 @@ public class SNClientBuilder {
 
   private SNClientBuilder(String apiUrl, String clientId, String clientSecret) {
     this.basicAuthHeader = "Basic " + encodeClientCredentials(clientId, clientSecret);
-    Client basicClient = ClientBuilder.newClient().register(MultiPartFeature.class);
+    // Not closing as is single instance which will be closed upon application termination
+    Client basicClient = ClientBuilder.newClient().register(MultiPartFeature.class); // NOSONAR
     snApiUrl = basicClient.target(apiUrl);
   }
 
