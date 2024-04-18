@@ -23,7 +23,9 @@ public class SNClientBuilder {
 
   private final String basicAuthHeader;
   private final WebTarget snApiUrl;
-  private static volatile SNClientBuilder instance;
+  // Use of volatile because of answer by Premraj:
+  // https://stackoverflow.com/questions/106591/what-is-the-volatile-keyword-useful-for
+  private static volatile SNClientBuilder instance; // NOSONAR
   protected static final Variant defaultVariant =
       new Variant(
           MediaType.APPLICATION_JSON_TYPE, Locale.getDefault(), StandardCharsets.UTF_8.name());
