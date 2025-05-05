@@ -28,11 +28,11 @@
     <!-- Dependencies -->
     <jakarta.xml.bind-api.version>[4.0.2]</jakarta.xml.bind-api.version>
     <jaxb-impl.version>[4.0.5]</jaxb-impl.version>
-    <jersey.version>[3.1.6]</jersey.version>
+    <jersey.version>[3.1.10]</jersey.version>
 
     <!-- Test dependencies -->
-    <junit.version>[5.10.2]</junit.version>
-    <mockito-core.version>[5.11.0]</mockito-core.version>
+    <junit.version>[5.12.2]</junit.version>
+    <mockito-core.version>[5.17.0]</mockito-core.version>
 
     <!-- Maven plugins -->
     <maven-assembly-plugin.version>3.7.1</maven-assembly-plugin.version>
