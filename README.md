@@ -37,10 +37,10 @@ Alternatively you can download a release artifact and its corresponding *POM* an
 in the download directory:
 ```
 mvn install:install-file \
-    -Dfile=api-client-lib-1.0.9.jar \
+    -Dfile=api-client-lib-1.1.0.jar \
     -DgroupId=com.signnow \
     -DartifactId=api-client-lib \
-    -Dversion=1.0.9 \
+    -Dversion=1.1.0 \
     -Dpackaging=jar \
     -DpomFile=pom.xml
 ```
@@ -49,7 +49,7 @@ Next, add a dependency to your app pom file:
 <dependency>
     <groupId>com.signnow</groupId>
     <artifactId>api-client-lib</artifactId>
-    <version>1.0.9</version>
+    <version>1.1.0</version>
 </dependency>   
 ```
 
