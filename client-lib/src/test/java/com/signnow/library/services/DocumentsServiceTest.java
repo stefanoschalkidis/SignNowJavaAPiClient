@@ -73,18 +73,18 @@ class DocumentsServiceTest extends CommonServiceTestCase {
 
   @Test
   void moveDocument() throws SNException {
-    final Document.MoveDocumentResponse responseMock = mock(Document.MoveDocumentResponse.class);
+    final Document.MoveDocumentResponse moveResponse = mock(Document.MoveDocumentResponse.class);
 
     when(clientMock.post(
             anyString(),
             anyMap(),
             any(Document.MoveDocumentRequest.class),
             eq(Document.MoveDocumentResponse.class)))
-        .thenReturn(responseMock);
+        .thenReturn(moveResponse);
 
     final String result = service.moveDocument("1", "12345");
 
-    assertEquals(responseMock.result, result); // not sure if useful as is null
+    assertEquals(moveResponse.result, result); // not sure if useful as is null
     verify(clientMock, times(1))
         .post(
             anyString(),
@@ -108,18 +108,18 @@ class DocumentsServiceTest extends CommonServiceTestCase {
 
   @Test
   void createSigningLink() throws SNException {
-    final Document.SigningLinkResponse responseMock = mock(Document.SigningLinkResponse.class);
+    final Document.SigningLinkResponse linkResponse = mock(Document.SigningLinkResponse.class);
 
     when(clientMock.post(
             anyString(),
             eq(null),
             any(Document.SigningLinkRequest.class),
             eq(Document.SigningLinkResponse.class)))
-        .thenReturn(responseMock);
+        .thenReturn(linkResponse);
 
     final Document.SigningLinkResponse signingLink = service.createSigningLink("1");
 
-    assertEquals(responseMock, signingLink);
+    assertEquals(linkResponse, signingLink);
     verify(clientMock, times(1))
         .post(
             anyString(),
@@ -153,14 +153,14 @@ class DocumentsServiceTest extends CommonServiceTestCase {
 
   @Test
   void updateDocumentFields() throws SNException {
-    final GenericId responseMock = mock(GenericId.class);
+    final GenericId idResponse = mock(GenericId.class);
     List<Document.Field> lst = new ArrayList<>();
 
-    when(clientMock.put(anyString(), anyMap(), any(), any())).thenReturn(responseMock);
+    when(clientMock.put(anyString(), anyMap(), any(), any())).thenReturn(idResponse);
 
     String id = service.updateDocumentFields("1", lst);
 
-    assertEquals(responseMock.id, id); // not sure if useful as is null
+    assertEquals(idResponse.id, id); // not sure if useful as is null
     verify(clientMock, times(1)).put(anyString(), anyMap(), any(), any());
   }
 
@@ -175,13 +175,13 @@ class DocumentsServiceTest extends CommonServiceTestCase {
 
   @Test
   void deleteDocument() throws SNException {
-    Document.DocumentDeleteResponse responseMock = mock(Document.DocumentDeleteResponse.class);
+    Document.DocumentDeleteResponse deleteResponse = mock(Document.DocumentDeleteResponse.class);
     when(clientMock.delete(anyString(), anyMap(), eq(Document.DocumentDeleteResponse.class)))
-        .thenReturn(responseMock);
+        .thenReturn(deleteResponse);
 
     String status = service.deleteDocument("1");
 
-    assertEquals(responseMock.status, status); // not sure if useful as is null
+    assertEquals(deleteResponse.status, status); // not sure if useful as is null
     verify(clientMock, times(1))
         .delete(anyString(), anyMap(), eq(Document.DocumentDeleteResponse.class));
   }
