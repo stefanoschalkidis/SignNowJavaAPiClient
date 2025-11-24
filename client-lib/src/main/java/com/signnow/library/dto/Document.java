@@ -29,12 +29,14 @@ public class Document extends GenericId {
 
   @JsonProperty("version_time")
   public String versionTime;
+
   /**
    * This one stands for some internal data info, does not correspond to document sign ID (free form
    * invite) or group invite ID
    */
   @JsonProperty("field_invites")
   public List<FieldInvite> fieldInvites;
+
   /** Free form invites info */
   public List<DocumentSignRequestInfo> requests;
 
