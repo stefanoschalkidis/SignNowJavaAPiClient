@@ -6,7 +6,7 @@
 
   <groupId>com.signnow</groupId>
   <artifactId>api-client-lib</artifactId>
-  <version>1.1.1-SNAPSHOT</version>
+  <version>1.1.1</version>
   <packaging>jar</packaging>
 
   <url>https://github.com/stefanoschalkidis/SignNowJavaAPiClient</url>
