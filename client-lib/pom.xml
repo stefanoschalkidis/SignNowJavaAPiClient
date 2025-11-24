@@ -26,13 +26,13 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
     <!-- Dependencies -->
-    <jakarta.xml.bind-api.version>[4.0.2]</jakarta.xml.bind-api.version>
-    <jaxb-impl.version>[4.0.5]</jaxb-impl.version>
-    <jersey.version>[3.1.10]</jersey.version>
+    <jakarta.xml.bind-api.version>[4.0.4]</jakarta.xml.bind-api.version>
+    <jaxb-impl.version>[4.0.6]</jaxb-impl.version>
+    <jersey.version>[3.1.11]</jersey.version>
 
     <!-- Test dependencies -->
-    <junit.version>[5.12.2]</junit.version>
-    <mockito-core.version>[5.17.0]</mockito-core.version>
+    <junit.version>[6.0.1]</junit.version>
+    <mockito-core.version>[5.20.0]</mockito-core.version>
 
     <!-- Maven plugins -->
     <maven-assembly-plugin.version>3.7.1</maven-assembly-plugin.version>
