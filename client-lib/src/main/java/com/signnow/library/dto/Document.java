@@ -120,6 +120,7 @@ public class Document extends GenericId {
     SIGNATURE("signature"),
     TEXT("text"),
     INITIALS("initials"),
+    STAMP("stamp"),
     CHECKBOX("checkbox"),
     ENUMERATION("enumeration");
 
