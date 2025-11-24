@@ -26,6 +26,7 @@ class DocumentGroupsServiceTest extends CommonServiceTestCase {
   private DocumentGroupsService service;
 
   @BeforeEach
+  @Override
   void setUp() {
     super.setUp();
     service = new DocumentGroupsService(clientMock);

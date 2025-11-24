@@ -36,6 +36,7 @@ class DocumentsServiceTest extends CommonServiceTestCase {
   private WebTarget webTargetMock;
 
   @BeforeEach
+  @Override
   void setUp() {
     super.setUp();
     service = new DocumentsService(clientMock);

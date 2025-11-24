@@ -17,6 +17,7 @@ class TemplatesServiceTest extends CommonServiceTestCase {
   private TemplatesService service;
 
   @BeforeEach
+  @Override
   void setUp() {
     super.setUp();
     service = new TemplatesService(clientMock);
