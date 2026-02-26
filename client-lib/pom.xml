@@ -51,6 +51,7 @@
     <jacoco-maven-plugin.version>0.8.14</jacoco-maven-plugin.version>
     <pgpverify-maven-plugin.version>1.19.1</pgpverify-maven-plugin.version>
     <sonar-maven-plugin.version>5.3.0.6276</sonar-maven-plugin.version>
+    <versions-maven-plugin.version>2.21.0</versions-maven-plugin.version>
 
     <!-- Formatting -->
     <git-code-format-maven-plugin.version>5.4</git-code-format-maven-plugin.version>
@@ -245,4 +246,29 @@
       </plugin>
     </plugins>
   </build>
+
+  <profiles>
+    <profile>
+      <id>versions-maven-plugin</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>versions-maven-plugin</artifactId>
+            <version>${versions-maven-plugin.version}</version>
+            <configuration>
+              <ruleSet>
+                <ignoreVersions>
+                  <ignoreVersion>
+                    <type>regex</type>
+                    <version>.(?i).*[-_\.](alpha|b|beta|rc|m|ea)[-_\.]?[0-9]*</version>
+                  </ignoreVersion>
+                </ignoreVersions>
+              </ruleSet>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 </project>
