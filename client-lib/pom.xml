@@ -26,6 +26,8 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
     <!-- Dependencies -->
+    <jackson-annotations.version>[2.21]</jackson-annotations.version>
+    <jackson.version>[2.21.5]</jackson.version>
     <jakarta.xml.bind-api.version>[4.0.5]</jakarta.xml.bind-api.version>
     <jaxb-impl.version>[4.0.9]</jaxb-impl.version>
     <jersey.version>[4.0.2]</jersey.version>
@@ -88,6 +90,21 @@
       <groupId>org.glassfish.jersey.inject</groupId>
       <artifactId>jersey-hk2</artifactId>
       <version>${jersey.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-annotations</artifactId>
+      <version>${jackson-annotations.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>${jackson.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.module</groupId>
+      <artifactId>jackson-module-jakarta-xmlbind-annotations</artifactId>
+      <version>${jackson.version}</version>
     </dependency>
 
     <!-- Tests -->
